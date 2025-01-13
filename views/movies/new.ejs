@@ -10,16 +10,16 @@
 
     <h1>Add your favorite movie</h1>
     <form action="/movies" method="POST">
-        <label for="name">Movie name:</label>
-        <input type="text" name="name" id="name" />
+        <label for="movieName">Movie name:</label>
+        <input type="text" name="movieName" id="movieName" />
 
         <div>
         
             <label for="isTop10">it is from the top 10?</label>
             <input type="checkbox" name="isTop10" id="isTop10" />
         </div>
-        <label for="year">Year of publish:</label>
-        <input type="text" name="year" id="year" />
+        <label for="yearOfPublish">Year of publish:</label>
+        <input type="text" name="yearOfPublish" id="yearOfPublish" />
 
         <label for="rate">Rate out of 10</label>
         <input type="number" name="rate" id="rate" />
@@ -37,7 +37,7 @@
 
         <button type="submit">Add Movie</button>
       </form>
-      <a href="/movies/">
+      <a href="/movies">
         <div>
         Back to Movies</div></a>
 </body>

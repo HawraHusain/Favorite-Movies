@@ -56,9 +56,6 @@ app.get('/protected', async (req, res) => {
   }
 });
 //Routes  
-app.get("/", async (req, res) => {
-  res.render("index.ejs");
-});
 app.get("/movies", async (req, res) => {
   res.render("movies/index.ejs");
 });
