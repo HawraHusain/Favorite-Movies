@@ -10,6 +10,7 @@ require('./config/database');
 // Controllers
 const authController = require('./controllers/auth');
 const isSignedIn = require('./middleware/isSignedIn');
+const Movie = require('./models/movie');
 
 const app = express();
 // Set the port from environment variable or default to 3000
@@ -54,7 +55,30 @@ app.get('/protected', async (req, res) => {
     // res.send('Sorry, no guests allowed.');
   }
 });
-
+//Routes  
+app.get("/", async (req, res) => {
+  res.render("index.ejs");
+});
+app.get("/movies", async (req, res) => {
+  res.render("movies/index.ejs");
+});
+app.get("/movies/new", (req, res) => {
+  res.render("movies/new.ejs");
+});
+app.post("/movies", async (req, res) => {
+  if (req.body.isTop10 === "on") {
+    req.body.isTop10 = true;
+  } else {
+    req.body.isTop10 = false;
+  }
+  await Movie.create(req.body);
+  res.redirect("/movies");
+  });
+   //Show all the movies
+   app.get("/movies", async (req, res) => {
+    const allMovies = await Movie.find();
+    res.render("movies/index.ejs", { movie: allMovies });
+  });
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);
