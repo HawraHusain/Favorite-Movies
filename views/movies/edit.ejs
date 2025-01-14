@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Edit <%= movie.movieName %></title>
+    <title>Edit <%= movie.movieName %>
+    </title>
 </head>
+
 <body class="edit-Background">
-    <div class="container">
-        <header>
-            <h1>Edit <%= movie.movieName %></h1>
+    <header class="navbar">
+
+        <div class="logo">
+            <a href="/">🍿 MovieApp</a>
+        </div>
+
+        <div class="auth-links">
             <a class="BackButtonEdit" href="/movies">Back to Movies </a>
-        </header>
+        </div>
+
+    </header>
+    <div class="container">
+
+        <h1>Edit <%= movie.movieName %>
+        </h1>
 
         <form action="/movies/<%= movie._id %>?_method=PUT" method="POST" class="movieform">
             <label for="movieName">Movie Name:</label>
@@ -22,27 +35,29 @@
 
             <label for="rate">Rating (1-10):</label>
             <select name="rate" id="rate" required>
-                <option value="1" <% if (movie.rate == 1) { %>selected<% } %>>1</option>
-                <option value="2" <% if (movie.rate == 2) { %>selected<% } %>>2</option>
-                <option value="3" <% if (movie.rate == 3) { %>selected<% } %>>3</option>
-                <option value="4" <% if (movie.rate == 4) { %>selected<% } %>>4</option>
-                <option value="5" <% if (movie.rate == 5) { %>selected<% } %>>5</option>
-                <option value="6" <% if (movie.rate == 6) { %>selected<% } %>>6</option>
-                <option value="7" <% if (movie.rate == 7) { %>selected<% } %>>7</option>
-                <option value="8" <% if (movie.rate == 8) { %>selected<% } %>>8</option>
-                <option value="9" <% if (movie.rate == 9) { %>selected<% } %>>9</option>
-                <option value="10" <% if (movie.rate == 10) { %>selected<% } %>>10</option>
+                <option value="1" <% if (movie.rate==1) { %>selected<% } %>>1</option>
+                <option value="2" <% if (movie.rate==2) { %>selected<% } %>>2</option>
+                <option value="3" <% if (movie.rate==3) { %>selected<% } %>>3</option>
+                <option value="4" <% if (movie.rate==4) { %>selected<% } %>>4</option>
+                <option value="5" <% if (movie.rate==5) { %>selected<% } %>>5</option>
+                <option value="6" <% if (movie.rate==6) { %>selected<% } %>>6</option>
+                <option value="7" <% if (movie.rate==7) { %>selected<% } %>>7</option>
+                <option value="8" <% if (movie.rate==8) { %>selected<% } %>>8</option>
+                <option value="9" <% if (movie.rate==9) { %>selected<% } %>>9</option>
+                <option value="10" <% if (movie.rate==10) { %>selected<% } %>>10</option>
             </select>
 
             <label for="genre">Genre:</label>
             <select name="genre" id="genre" required>
-                <option value="Action" <% if (movie.genre == 'Action') { %>selected<% } %>>Action</option>
-                <option value="Comedy" <% if (movie.genre == 'Comedy') { %>selected<% } %>>Comedy</option>
-                <option value="Drama" <% if (movie.genre == 'Drama') { %>selected<% } %>>Drama</option>
-                <option value="Horror" <% if (movie.genre == 'Horror') { %>selected<% } %>>Horror</option>
-                <option value="Romance" <% if (movie.genre == 'Romance') { %>selected<% } %>>Romance</option>
-                <option value="Sci-Fi" <% if (movie.genre == 'Sci-Fi') { %>selected<% } %>>Sci-Fi</option>
-                <option value="Animation" <% if (movie.genre == 'Animation') { %>selected<% } %>>Animation</option>
+                <option value="Action" <% if (movie.genre=='Action' ) { %>selected<% } %>>Action</option>
+                <option value="Comedy" <% if (movie.genre=='Comedy' ) { %>selected<% } %>>Comedy</option>
+                <option value="Drama" <% if (movie.genre=='Drama' ) { %>selected<% } %>>Drama</option>
+                <option value="Horror" <% if (movie.genre=='Horror' ) { %>selected<% } %>>Horror</option>
+                <option value="Romance" <% if (movie.genre=='Romance' ) { %>selected<% } %>>Romance</option>
+                <option value="Sci-Fi" <% if (movie.genre=='Sci-Fi' ) { %>selected<% } %>>Sci-Fi</option>
+                <option value="Animation" <% if (movie.genre=='Animation' ) { %>selected<% } %>>Animation</option>
+                <option value="Adventure" <% if (movie.genre=='Adventure' ) { %>selected<% } %>>Adventure</option>
+
             </select>
 
             <div class="checkbox-div">
@@ -53,7 +68,11 @@
             <button type="submit" class="submit-button">Update Movie</button>
         </form>
 
-       
+
     </div>
+    <footer class="footer">
+        <p>&copy; 2025 MovieApp. All rights reserved.</p>
+    </footer>
 </body>
+
 </html>

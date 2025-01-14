@@ -1,29 +1,46 @@
-<!-- views/index.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Favorite Movies</title>
+    <title>MovieApp</title>
   </head>
   <body>
-    <% if (user) { %>
-      <h1>Welcome to the app, <%= user.username %>!</h1>
-      <a href="/auth/sign-out">Sign out</a>
+    <header class="navbar">
+      <div class="logo">
+        <a href="/">🍿 MovieApp</a>
+      </div>
+      <% if (user) { %>
+        <div class="user-info">
+          <span>Welcome, <%= user.username %>!</span>
+          <a href="/auth/sign-out" class="sign-out-btn">Sign out</a>
+        </div>
       <% } else { %>
-      <h1>Welcome to the app, guest.</h1>
-      <p>
-        <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a>.
-      </p>
+        <div class="auth-links">
+          <a href="/auth/sign-up" class="auth-btn">Sign up</a> 
+          <a href="/auth/sign-in" class="auth-btn">Sign in</a>
+        </div>
       <% } %>
+    </header>
+    
+    <main class="main-content">
+      <section class="intro">
+        <h1>Welcome to the Movie App</h1>
+        <p>Enjoy browsing your favorite movies, curated just for you.</p>
+      </section>
       
-      <p><a href="/protected">Get into the VIP Users Only lounge!</a></p>
-      <a href="/movies">
-        <div > 
-            Browse Favorite Movies
-            </div>
-        </a>
+      <section class="cta">
+        <a href="/movies" class="cta-btn">Browse Favorite Movies</a>
+      </section>
+      
+      <section class="lounge-access">
+        <p><a href="/protected" class="lounge-btn">Get into the VIP Users Only lounge!</a></p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025 MovieApp. All rights reserved.</p>
+    </footer>
   </body>
 </html>

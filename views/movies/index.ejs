@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Your Movies</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Your Movies</title>
 </head>
+
 <body>
-  <header>
-    <h1>Welcome, <%= user.username %></h1>
-    <a href="/auth/sign-out" class="logout-link">Logout</a>
+  <header class="navbar">
+    <div class="logo">
+      <a href="/">🍿 MovieApp</a>
+    </div>
+    <div class="auth-links">
+      <a href="/auth/sign-out" class="auth-btn">Logout</a>
+    </div>
+
   </header>
-  
   <a href="/movies/new" class="add-new-movie">Add New Movie</a>
-  
+
   <div class="movie-list">
-      <% movies.forEach(movie => { %>
-          <div class="movie-card">
-              <div class="movie-name"><%= movie.movieName %></div>
-              <a href="/movies/<%= movie._id %>" class="view-details">View Details</a>
-          </div>
+    <% movies.forEach(movie=> { %>
+      <div class="movie-card">
+        <div class="movie-name">
+          <%= movie.movieName %>
+        </div>
+        <a href="/movies/<%= movie._id %>" class="view-details">View Details</a>
+      </div>
       <% }) %>
   </div>
+  <footer class="footer">
+    <p>&copy; 2025 MovieApp. All rights reserved.</p>
+  </footer>
 </body>
+
 </html>

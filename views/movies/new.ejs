@@ -7,11 +7,20 @@
     <title>Add Your Favorite Movie</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Add Your Favorite Movie</h1>
-            <a class="BackButtonEdit" href="/movies">Back to Movies </a>
+        <header class="navbar">
+
+            <div class="logo">
+                <a href="/">🍿 MovieApp</a>
+            </div>
+
+            <div class="auth-links">
+                <a class="BackButtonEdit" href="/movies">Back to Movies </a>
+            </div>
+        
         </header>
+        <h1>Add Your Favorite Movie</h1>
+
+        <div class="container">
     <form action="/movies" method="POST" class="movieform">
         
         <!-- Movie Name -->
@@ -42,10 +51,15 @@
             <option value="Romance">Romance</option>
             <option value="Sci-Fi">Sci-Fi</option>
             <option value="Animation">Animation</option>
+            <option value="Adventure">Adventure</option>
+
         </select>
 
         <button type="submit"class="submit-button">Add Movie</button>
     </form>
-
+</div>
+<footer class="footer">
+    <p>&copy; 2025 MovieApp. All rights reserved.</p>
+  </footer>
 </body>
 </html>
