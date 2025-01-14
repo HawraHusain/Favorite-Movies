@@ -7,9 +7,13 @@
     <title>Your Movies</title>
 </head>
 <body>
-  <h1>Welcome, <%= user.username %></h1>
-  <h2>Your Movies</h2>
-  <a href="/movies/new">Add New Movie</a>
+  <header>
+    <h1>Welcome, <%= user.username %></h1>
+    <a href="/auth/sign-out" class="logout-link">Logout</a>
+  </header>
+  
+  <a href="/movies/new" class="add-new-movie">Add New Movie</a>
+  
   <div class="movie-list">
       <% movies.forEach(movie => { %>
           <div class="movie-card">
@@ -18,6 +22,5 @@
           </div>
       <% }) %>
   </div>
-  <a href="/auth/sign-out" class="logout-link">Logout</a>
 </body>
 </html>

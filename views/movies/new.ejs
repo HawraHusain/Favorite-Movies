@@ -7,9 +7,12 @@
     <title>Add Your Favorite Movie</title>
 </head>
 <body>
-
-    <h1>Add Your Favorite Movie</h1>
-    <form action="/movies" method="POST">
+    <div class="container">
+        <header>
+            <h1>Add Your Favorite Movie</h1>
+            <a class="BackButtonEdit" href="/movies">Back to Movies </a>
+        </header>
+    <form action="/movies" method="POST" class="movieform">
         
         <!-- Movie Name -->
         <label for="movieName">Movie Name:</label>
@@ -41,12 +44,8 @@
             <option value="Animation">Animation</option>
         </select>
 
-        <button type="submit">Add Movie</button>
+        <button type="submit"class="submit-button">Add Movie</button>
     </form>
-
-    <a href="/movies">
-        <button>Back to Movies</button>
-    </a>
 
 </body>
 </html>
