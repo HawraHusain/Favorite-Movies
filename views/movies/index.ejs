@@ -1,13 +1,23 @@
-<!-- views/movies/index.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Your Movies</title>
 </head>
 <body>
-  test to show all movies
+  <h1>Welcome, <%= user.username %></h1>
+  <h2>Your Movies</h2>
+  <a href="/movies/new">Add New Movie</a>
+  <div class="movie-list">
+      <% movies.forEach(movie => { %>
+          <div class="movie-card">
+              <div class="movie-name"><%= movie.movieName %></div>
+              <a href="/movies/<%= movie._id %>" class="view-details">View Details</a>
+          </div>
+      <% }) %>
+  </div>
+  <a href="/auth/sign-out" class="logout-link">Logout</a>
 </body>
 </html>

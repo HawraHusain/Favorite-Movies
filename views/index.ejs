@@ -5,7 +5,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Favorite Movies</title>
   </head>
   <body>
     <% if (user) { %>
@@ -17,7 +18,12 @@
         <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a>.
       </p>
       <% } %>
-
+      
       <p><a href="/protected">Get into the VIP Users Only lounge!</a></p>
+      <a href="/movies">
+        <div > 
+            Browse Favorite Movies
+            </div>
+        </a>
   </body>
 </html>

@@ -4,28 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Your favorite movie</title>
+    <title>Add Your Favorite Movie</title>
 </head>
 <body>
 
-    <h1>Add your favorite movie</h1>
+    <h1>Add Your Favorite Movie</h1>
     <form action="/movies" method="POST">
-        <label for="movieName">Movie name:</label>
-        <input type="text" name="movieName" id="movieName" />
-
-        <div>
         
-            <label for="isTop10">it is from the top 10?</label>
+        <!-- Movie Name -->
+        <label for="movieName">Movie Name:</label>
+        <input type="text" name="movieName" id="movieName" required />
+
+        <!-- Top 10 Checkbox -->
+        <div>
+            <label for="isTop10">Is it from the Top 10?</label>
             <input type="checkbox" name="isTop10" id="isTop10" />
         </div>
-        <label for="yearOfPublish">Year of publish:</label>
-        <input type="text" name="yearOfPublish" id="yearOfPublish" />
 
-        <label for="rate">Rate out of 10</label>
-        <input type="number" name="rate" id="rate" />
-        
+        <!-- Year of Publish -->
+        <label for="yearOfPublish">Year of Publish:</label>
+        <input type="text" name="yearOfPublish" id="yearOfPublish" required pattern="\d{4}" />
+
+        <!-- Rating -->
+        <label for="rate">Rate out of 10:</label>
+        <input type="number" name="rate" id="rate" min="1" max="10" required />
+
+        <!-- Genre Selection -->
         <label for="genre">Select Movie Genre:</label>
-        <select name="genre" id="genre">
+        <select name="genre" id="genre" required>
             <option value="Action">Action</option>
             <option value="Comedy">Comedy</option>
             <option value="Drama">Drama</option>
@@ -36,9 +42,11 @@
         </select>
 
         <button type="submit">Add Movie</button>
-      </form>
-      <a href="/movies">
-        <div>
-        Back to Movies</div></a>
+    </form>
+
+    <a href="/movies">
+        <button>Back to Movies</button>
+    </a>
+
 </body>
 </html>

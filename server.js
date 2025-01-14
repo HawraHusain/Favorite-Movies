@@ -56,26 +56,74 @@ app.get('/protected', async (req, res) => {
   }
 });
 //Routes  
+
 app.get("/movies", async (req, res) => {
-  res.render("movies/index.ejs");
+  const allMovies = await Movie.find({ userId: req.session.userId });  // Fetch only movies of the logged-in user
+  res.render("movies/index.ejs", { movies: allMovies });
 });
+
+// Add a new movie form
 app.get("/movies/new", (req, res) => {
   res.render("movies/new.ejs");
 });
+
+// Create a new movie
 app.post("/movies", async (req, res) => {
   if (req.body.isTop10 === "on") {
     req.body.isTop10 = true;
   } else {
     req.body.isTop10 = false;
   }
-  await Movie.create(req.body);
+
+  // Associate the movie with the logged-in user (via userId from session)
+  const movieData = {
+    movieName: req.body.movieName,
+    isTop10: req.body.isTop10,
+    yearOfPublish: req.body.yearOfPublish,
+    rate: req.body.rate,
+    genre: req.body.genre,
+    // userId: req.session.userId, // This associates the movie with the user
+  };
+
+  await Movie.create(movieData);
   res.redirect("/movies");
+});
+
+// Show a specific movie by ID
+app.get("/movies/:movieId", async (req, res) => {
+  const foundMovie = await Movie.findById(req.params.movieId);
+  res.render("movies/show.ejs", { movie: foundMovie });
+});
+//List movies 
+app.get("/movies",async(req ,res)=>{
+  const movies=await Movie.find();
+  res.render('movies',{movies});
+});
+//To Delete 
+app.delete("/movies/:movieId", async (req, res) => {
+  await Movie.findByIdAndDelete(req.params.movieId);
+  res.redirect("/movies");
+});
+
+//To open Edit page 
+app.get("/movies/:movieId/edit", async (req, res) => {
+  const foundMovie = await Movie.findById(req.params.movieId);
+  res.render("movies/edit.ejs", {
+    movie: foundMovie,
   });
-   //Show all the movies
-   app.get("/movies", async (req, res) => {
-    const allMovies = await Movie.find();
-    res.render("movies/index.ejs", { movie: allMovies });
-  });
+});
+//To Update the movie
+app.put("/movies/:movieId", async (req, res) => {
+  if (req.body.isTop10 === "on") {
+    req.body.isTop10 = true;
+  } else {
+    req.body.isTop10 = false;
+  }
+  
+  await Movie.findByIdAndUpdate(req.params.movieId, req.body);
+
+  res.redirect(`/movies/${req.params.movieId}`);
+});
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);

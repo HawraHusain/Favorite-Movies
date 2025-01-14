@@ -6,6 +6,7 @@ const movieSchema = new mongoose.Schema({
   yearOfPublish: { type: String, required: true },
   rate: { type: Number, required: true, min: 1, max: 10 },
   genre : {type: String , require:true},
+  //To add username 
 })
 
 const Movie = mongoose.model('Movie', movieSchema)

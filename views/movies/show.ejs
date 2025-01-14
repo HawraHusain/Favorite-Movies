@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= movie.movieName %></title> 
+  </head>
+  <body>
+    <div class="movie-details">
+      <h1><%= movie.movieName %></h1>
+
+      <p><strong>Year of Release:</strong> <%= movie.yearOfPublish %></p>
+      <p><strong>Rating:</strong> <%= movie.rate %></p>
+      <p><strong>Genre:</strong> <%= movie.genre %></p>
+
+      <% if (movie.isTop10) { %>
+        <p>This movie is in the Top 10!</p>
+      <% } else { %>
+        <p>This movie is not in the Top 10.</p>
+      <% } %>
+    </div>
+
+    <div class="movie-actions">
+      <!-- Form for deleting the movie -->
+      <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST" class="delete-form">
+        <button class="delete-button" type="submit">Delete <%= movie.movieName %></button>
+      </form>
+
+      <!-- Link to edit the movie -->
+      <a class="edit-link" href="/movies/<%= movie._id %>/edit">
+        <div class="edit-text">Edit <%= movie.movieName %></div>
+      </a>      
+      <a href="/movies">Back to movies</a>
+    </div>
+  </body>
+</html>
