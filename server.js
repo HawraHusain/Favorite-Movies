@@ -10,12 +10,12 @@ require('./config/database');
 // Controllers
 const authController = require('./controllers/auth');
 const isSignedIn = require('./middleware/isSignedIn');
-const Movie = require('./models/movie');
 
 const app = express();
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
 const path = require('path');
+const User = require('./models/user');
 
 // MIDDLEWARE
 //for stylesheet
@@ -61,71 +61,62 @@ app.get('/protected', async (req, res) => {
 });
 //Routes  
 
-app.get("/movies", async (req, res) => {
-  const allMovies = await Movie.find({ userId: req.session.userId });  // Fetch only movies of the logged-in user
-  res.render("movies/index.ejs", { movies: allMovies });
-});
 
 // Add a new movie form
 app.get("/movies/new", (req, res) => {
   res.render("movies/new.ejs");
 });
-
+app.get("/movies",async(req ,res)=>{
+  const currentUser = await User.findById(req.session.user._id);
+  const movies= currentUser.movies;
+  res.render('movies/index.ejs',{movies});
+});
 // Create a new movie
 app.post("/movies", async (req, res) => {
-  if (req.body.isTop10 === "on") {
+  const currentUser = await User.findById(req.session.user._id);
+   if (req.body.isTop10 === "on") {
     req.body.isTop10 = true;
   } else {
     req.body.isTop10 = false;
-  }
+  }  
+  currentUser.movies.push(req.body);
 
-  // Associate the movie with the logged-in user (via userId from session)
-  const movieData = {
-    movieName: req.body.movieName,
-    isTop10: req.body.isTop10,
-    yearOfPublish: req.body.yearOfPublish,
-    rate: req.body.rate,
-    genre: req.body.genre,
-    // userId: req.session.userId, // This associates the movie with the user
-  };
+  await currentUser.save();
 
-  await Movie.create(movieData);
+  // await User.create(req.body);
   res.redirect("/movies");
 });
-
 // Show a specific movie by ID
 app.get("/movies/:movieId", async (req, res) => {
-  const foundMovie = await Movie.findById(req.params.movieId);
+  const currentUser = await User.findById(req.session.user._id);
+  const foundMovie= currentUser.movies.id(req.params.movieId);
   res.render("movies/show.ejs", { movie: foundMovie });
-});
-//List movies 
-app.get("/movies",async(req ,res)=>{
-  const movies=await Movie.find();
-  res.render('movies',{movies});
 });
 //To Delete 
 app.delete("/movies/:movieId", async (req, res) => {
-  await Movie.findByIdAndDelete(req.params.movieId);
+  const currentUser = await User.findById(req.session.user._id);
+ currentUser.movies.id(req.params.movieId).deleteOne();
+ await currentUser.save();
   res.redirect("/movies");
 });
-
 //To open Edit page 
 app.get("/movies/:movieId/edit", async (req, res) => {
-  const foundMovie = await Movie.findById(req.params.movieId);
-  res.render("movies/edit.ejs", {
-    movie: foundMovie,
-  });
+  const currentUser = await User.findById(req.session.user._id);
+  const foundMovie= currentUser.movies.id(req.params.movieId);
+  res.render("movies/edit.ejs", {movie: foundMovie,});
 });
 //To Update the movie
 app.put("/movies/:movieId", async (req, res) => {
+  const currentUser = await User.findById(req.session.user._id);
+
   if (req.body.isTop10 === "on") {
     req.body.isTop10 = true;
   } else {
     req.body.isTop10 = false;
   }
-  
-  await Movie.findByIdAndUpdate(req.params.movieId, req.body);
-
+  const app = currentUser.movies.id(req.params.movieId);
+  app.set(req.body);
+  await currentUser.save();
   res.redirect(`/movies/${req.params.movieId}`);
 });
 app.listen(port, () => {

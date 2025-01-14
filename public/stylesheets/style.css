@@ -1,11 +1,11 @@
-/* public/stylesheets/style.css */
 
   body {
     font-family: 'Roboto', sans-serif;
-    background-color: #141414; /* Dark background */
+    background-color: #141414; 
     color: #fff;
     margin: 0;
     padding: 0;
+
   }
   header {
     position: relative;
@@ -100,6 +100,10 @@
     background-color: #e50914;
   }
   
+  /* Edit page background */
+.edit-Background{
+    background-image: url("./BK1.png"); 
+  }
   /* Form Styling */
 .movieform {
     background-color: #333;
