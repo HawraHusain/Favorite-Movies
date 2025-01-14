@@ -1,97 +1,65 @@
-# MEN Stack Starter Template with Session Authentication
+# MovieApp
 
-Welcome to the MEN Stack Starter Template! This template provides a foundational setup for building web applications using MongoDB, Express.js, and Node.js, complete with session authentication. This is ideal for students looking to kickstart their development projects.
+>The MovieApp is a web application for managing your personal movie collection. This project allows users to add, edit, view, and delete movies from their personal list. It is built with Express.js, connected to a MongoDB database, and supports user authentication with sessions.
 
-## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Clone the Repository](#clone-the-repository)
-- [Installation](#installation)
-- [Environment Setup](#environment-setup)
-- [Running the Application](#running-the-application)
-- [Removing Git and Creating Your Own Repo](#removing-git-and-creating-your-own-repo)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
+![Land page](./public/stylesheets/LandingPage.png)
 
-## Prerequisites
+## Getting Started
+## Planning Materials 
+[View Planning Document](https://docs.google.com/document/d/1OFcqyYHjfDCbweLAzu08CJ1Ypt_gQd6PVebieOp8sN0/edit?usp=sharing)
 
-Before you begin, ensure you have the following installed on your machine:
-- [Node.js](https://nodejs.org/) (LTS or later)
-- [MongoDB](https://www.mongodb.com/) (make sure it's running)
-- [Git](https://git-scm.com/) (for cloning the repository)
+## Attributuions 
 
-## Clone the Repository
+- [Backgrounds](https://www.canva.com)
+- [Font](https://fonts.google.com/specimen/Spicy+Rice)
 
-To clone this repository, open your terminal and run:
+## Technologies Used
 
-```bash
-git clone https://github.com/SEB-1-Bahrain/instructor-men-auth.git men-stack-starter-template
-```
+![HTML](https://img.shields.io/badge/-HTML-E34F26?1ogo=html5&logoColor=white&style=flat-square)
+![CSS](https://img.shields.io/badge/-CSS-1572B6?logo=css3&logoColor-white&style=flat-square)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
+![Git](https://img.shields.io/badge/-Git-F05032?logo=git&logoColor=white&style=flat-square)
+![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black&style=flat-square)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=flat-square)
+![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&logoColor=white&style=flat-square)
 
-## Installation
-Navigate into the cloned directory:
-```bash
-cd men-stack-starter-template
-```
+## How the Website Works 
+> The process begins with a landing page where users can either sign in or sign up. If the user clicks any other button, they will be redirected to the sign-in page.
 
-Then, install the necessary dependencies:
+> To sign up, users only need to provide a username, password, and confirm their password.
+![Sign Up Page](./public/stylesheets/SignUp.png)
 
-```bash
-npm i
-```
+> If the user enters incorrect sign-in information, they will be redirected to an error page with message.
 
-## Environment Setup
-```plaintext
-MONGODB_URI=atlas_db_uri
-SESSION_SECRET=your_secret_key
-SALT_ROUNDS=10
-```
-Replace `atlas_db_uri` with your desired database name and `your_secret_key` with a secure key.
+> Next is the sign-in page, where the user must enter a valid username and password that match the records in the database.
+![Sign in Page](./public/stylesheets/Signin.png)
 
-## Removing Git and Creating Your Own Repo
-To remove the existing Git history and create your own repository:
+> Once the user signs in, the navigation bar will display a welcome message along with the username.
+![User Logged in Page](./public/stylesheets/User%20been%20Logged%20in.png)
 
-1. Remove the existing .git folder:
-  ```bash
-  rm -rf .git
-  ```
-2. Initialize a new Git repository:
-  ```bash
-  git init
-  ```
-3. Add all files to the new repository:
-  ```bash
-  git add .
-  ```
-4. Commit the changes
-   ```bash
-   git commit -m "Initial commit"
-   ``` 
-5. Create a new repository on GitHub (or any other platform) and follow the instructions to push your local repository.
-  Make a new repository on [GitHub](https://github.com/) named `<your-project-name>`
-  Now link your local project to your remote GitHub repo:
-  ```bash
-  git remote add origin https://github.com/<github-username>/men-stack-relating-data-lab-cookbook.git
-  git push origin main
-  ```
 
-> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
+> Once signed in, users can view only the movies they have previously added.
+![View all user movies page](./public/stylesheets/ViewAll.png)
 
-## Running the application
-```bash
-npm run dev
-```
+> If the user clicks "Add New Movie," they will be redirected to a form page where they can fill in movie details. After submitting, the movie will be added to their list of favorite movies.
+![Add new Page](./public/stylesheets/AddNew.png)
+
+> If the user selects "View Details," they will be shown additional information on the movie's show page. From there, they can choose to either edit, delete, or go back to the movie list.
+![View Details Page](./public/stylesheets/View.png)
+
+> Clicking "Edit" allows users to modify the movie's information and save the updates.
+![Edit page ](./public/stylesheets/Edit.png)
+
+> If "Delete" is clicked, the selected movie will be removed.
+
+> Clicking "Logout" will log the user out and redirect them to the home page.
+
 
 ## Features
-- User registration and login with session management
-- Basic CRUD operations
-- Modular file structure
-- Example routes and controllers
-- Basic user model setup
-- Middleware for templates and authorization
-- Basic authentication flow
+- User registration and login with session handling
+- Users can update movie information
+- Users can delete movie entries
+- Users can view all their own added movies
+- Users can seamlessly navigate between pages
+- Users can only view their own movies, not those of other users.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Happy Coding!
