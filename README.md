@@ -63,3 +63,7 @@
 - Users can seamlessly navigate between pages
 - Users can only view their own movies, not those of other users.
 
+## Future Work
+
+- Edit Profile for users to add more personal details
+- Add new feature to the users to view other users movies
